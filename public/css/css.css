@@ -1,0 +1,16 @@
+body {
+    padding-top: 60px;
+}
+
+/*h1, p {
+    padding-left: 30px;
+}*/
+
+.navbar-brand {
+    font-size: 30px !important;
+}
+
+.form-group {
+    padding-left: 20px;
+    padding-right: 20px;
+}
