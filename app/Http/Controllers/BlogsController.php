@@ -6,13 +6,16 @@ use App\Blog;
 use App\Http\Requests\BlogRequest;
 use App\Tag;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
+use Psy\Exception\FatalErrorException;
 
 class BlogsController extends Controller
 {
@@ -96,6 +99,30 @@ class BlogsController extends Controller
         return redirect('blog')->with([
            'flash_message' => 'Your article has been deleted'
         ]);
+    }
+
+    public function search()
+    {
+        if (Input::has('query')) {
+            $query = Input::get('query');
+
+            $blogs = Blog::whereRaw("MATCH (title, body) AGAINST
+            (? IN BOOLEAN MODE)", array($query))
+                ->orderBy('published_at', 'DESC')
+                ->published()
+                ->get();
+
+            if (!$blogs->isEmpty()) {
+                return view('blog.index', ['blogs' => $blogs]);
+            }
+            else {
+                return redirect('blog')->with(['blogs' => $blogs,
+                    'flash_message' => 'No blogs were found
+                    that match "' . $query . '".',
+                    'flash_message_error' => true]);
+            }
+        }
+        return redirect()->back();
     }
 
     /**

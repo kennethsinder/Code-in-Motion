@@ -2,6 +2,8 @@
 
 @extends('layouts.master')
 
+@section('content')
+
 <form method="POST" action="/auth/login">
     {!! csrf_field() !!}
     <div class="container">
@@ -13,7 +15,7 @@
 
             <br/>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+            <input type="password" class="form-control" placeholder="Password"
                    name="password" id="password" required>
 
             <div class="checkbox">
@@ -26,3 +28,5 @@
         </form>
     </div>
 </form>
+
+@stop

@@ -13,6 +13,7 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('about', 'AboutController@index');
+Route::get('search', ['as' => 'search', 'uses' => 'BlogsController@search']);
 Route::resource('blog', 'BlogsController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('contact', 'ContactController');
