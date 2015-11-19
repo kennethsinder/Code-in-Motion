@@ -44,6 +44,7 @@ class BlogsController extends Controller
             $potentialPath = 'images/catalog/' . $blog->id . '.' . $ext;
             if (file_exists($potentialPath)) {
                 $path = $potentialPath;
+                break;
             }
         }
         return view('blog.show', compact('blog', 'path'));
