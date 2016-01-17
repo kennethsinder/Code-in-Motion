@@ -23,7 +23,8 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-
-        return view('welcome');
+        $blog = \App\Blog::latest()->first();
+        $project = \App\Project::latest('date_created')->first();
+        return view('welcome')->with(compact('blog', 'project'));
     }
 }

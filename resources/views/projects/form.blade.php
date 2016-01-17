@@ -17,12 +17,17 @@
 <!-- Published At Input -->
 <div class="form-group">
     {!! Form::label('date_created', 'Created on:') !!}<br>
-    {!! Form::input('date', 'date_created', $project->published_at, ['class'=>'form-control']) !!}
+    {!! Form::input('date', 'date_created', $project->date_created, ['class'=>'form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('github', 'GitHub link:') !!}<br>
     {!! Form::text('github', null, ['class'=>'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('important', 'Display on carousel? ') !!}
+    {!! Form::checkbox('important', 'important', true) !!}
 </div>
 
 <div class="form-group">

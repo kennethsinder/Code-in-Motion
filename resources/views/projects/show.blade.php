@@ -12,7 +12,7 @@
     @endif
 
     @if ($project->github)
-        <p><h4>{{$project->github}}</h4></p>
+        <p><h4><a href={{$project->github}}>GitHub Link for Project</a></h4></p>
     @endif
 
     <article><p class="">
@@ -21,11 +21,11 @@
 
     <br/>
     @unless (auth()->guest())
-        <a href={{ $project->id . '/edit' }} class='btn btn-primary' role="button">Edit Project</a>
+        <a href={{ $project->id . '/edit' }} class="btn btn-primary" role="button">Edit Project</a>
         <br/><br/>
 
         {!! Form::open(array('route' => array('projects.destroy', $project->id), 'method' => 'delete')) !!}
-        <button type="submit" class="btn btn-danger">Delete Blog Post</button>
+        <button type="submit" class="btn btn-danger">Delete Project</button>
         {!! Form::close() !!}
     @endunless
 @stop

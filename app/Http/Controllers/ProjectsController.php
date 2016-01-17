@@ -20,7 +20,9 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::latest('date_created')->get();
-        return view('projects.index', compact('projects'));
+        $selected_projects = Project::latest('date_created')->where('important', 1)->get();
+        //dd($selected_projects);
+        return view('projects.index', compact('projects', 'selected_projects'));
     }
 
     public function show(Project $project)
@@ -44,7 +46,7 @@ class ProjectsController extends Controller
 
     public function edit(Project $project)
     {
-        return view('project.edit', compact('project'));
+        return view('projects.edit', compact('project'));
     }
 
     public function update(Project $project, ProjectRequest $request)
@@ -54,8 +56,9 @@ class ProjectsController extends Controller
             'name' => $request->get('name'),
             'excerpt' => $request->get('excerpt'),
             'description' => $request->get('description'),
-            'github' => $request->get('github'),
+            'github' => $this->convertToAbsoluteUrl($request->get('github')),
             'date_created' => $request->get('date_created'),
+            'important' => $request->get('important') ? true : false,
         ]);
 
         $this->saveImage($project, $request);
@@ -69,8 +72,9 @@ class ProjectsController extends Controller
             'name' => $request->get('name'),
             'excerpt' => $request->get('excerpt'),
             'description' => $request->get('description'),
-            'github' => $request->get('github'),
+            'github' => $this->convertToAbsoluteUrl($request->get('github')),
             'date_created' => $request->get('date_created'),
+            'important' => $request->get('important') ? true : false,
         ]);
         $this->saveImage($project, $request);
         $project->save();
@@ -92,7 +96,17 @@ class ProjectsController extends Controller
             $newExt = 'images/catalog/projects' . $imageName;
             $img = Image::make($request->file('image'))->orientate()->heighten(300);
             $img->save(public_path($newExt));
-
+            $project->image_url = $newExt;
+            $project->save();
         }
+    }
+
+    private function convertToAbsoluteUrl($url)
+    {
+        if (strpos($url, 'http') === false)
+        {
+            return 'http://'.$url;
+        }
+        return $url;
     }
 }

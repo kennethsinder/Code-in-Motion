@@ -9,17 +9,22 @@
         <br/><br/>
     @endunless
 
-    @foreach($projects as $project)
-        <article>
+
+    <div class="row">
+    @foreach($projects as $i => $project)
+        @if($i % 3 == 0 && $i > 0)
+            </div><div class="row">
+        @endif
+        <div class="col-sm-4">
             <h2>
                 <a href="{{action('ProjectsController@show', [$project->id])}}">
                     {{ $project->name }}
                 </a>
-                <h4 style="font-style: italic;">{{Carbon\Carbon::parse($project->date_created)->format('l, F jS, Y')}}</h4>
+                <h4 style="font-style: italic;">{{Carbon\Carbon::parse($project->date_created)->format('F Y')}}</h4>
             </h2>
 
-            <div class="body lead"> {{str_limit($project->excerpt)}}</div>
-        </article>
-        <hr/>
+            <h4> {{str_limit($project->excerpt, 200)}}</h4>
+        </div>
     @endforeach
+    </div>
 @endsection('content')

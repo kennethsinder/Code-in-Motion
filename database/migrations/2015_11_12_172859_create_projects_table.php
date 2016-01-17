@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->text('excerpt');
             $table->text('description');
             $table->string('github');
+            $table->boolean('important');
             $table->timestamp('date_created');
             $table->timestamps();
         });

@@ -13,7 +13,8 @@ class AboutController extends Controller
     {
         $first = 'Kenneth';
         $last = 'Sinder';
-        $courses = ['Programming Principles', 'Methods of Software Engineering'];
+        $courses = ['Programming Principles', 'Methods of Software Engineering',
+                    'Data Abstraction and Implementation', 'Digital Circuits and Systems'];
         return view('about.index')->with(compact('first' , 'last', 'courses'));
     }
 }

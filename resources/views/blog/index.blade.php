@@ -7,7 +7,7 @@
         <label for="query">Search Blog</label>
         <input type="query" id="query" name="query"
                class="form-control" placeholder="Which blog post are you looking for?"><br/>
-        <input type="submit" class="btn btn-primary form-control" value="Search">
+        <input type="submit" class="btn btn-primary" value="Search">
     </form>
     <hr/>
 
