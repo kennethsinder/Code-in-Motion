@@ -32,10 +32,10 @@ body {
     margin-bottom: 10px;
 }
 
-[class *= "col-"] {
+[class *= "col-sm-12"] {
     /*background-color: #daf2fe;
     border: 1px solid #000000;*/
-    border-top: 1px solid #000;
+    border-top: 1px solid #d3d3d3;
     height: 300px;
 }
 [class *= "col-"]:not(:first-child,:last-child) {

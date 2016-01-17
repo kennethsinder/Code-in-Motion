@@ -15,7 +15,7 @@
         @if($i % 3 == 0 && $i > 0)
             </div><div class="row">
         @endif
-        <div class="col-sm-4">
+        <div class="col-sm-4"><div class="col-sm-12">
             <h2>
                 <a href="{{action('ProjectsController@show', [$project->id])}}">
                     {{ $project->name }}
@@ -24,7 +24,7 @@
             </h2>
 
             <h4> {{str_limit($project->excerpt, 200)}}</h4>
-        </div>
+        </div></div>
     @endforeach
     </div>
 @endsection('content')
