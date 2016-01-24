@@ -4,8 +4,9 @@
 <h1>About {{ $first }}</h1><hr/>
 
 <h4 style="line-height: 150%;">
-    {{ $first }} {{ $last }} is a Software Engineering student at the University of Waterloo
-    interested in mobile and web development.<br/>
+    @unless (auth()->guest()) <a href="pages/about/edit" class="btn btn-primary">Edit Text</a><br/><br/>
+    @endunless
+    {!!$text!!}<br/>
 
     <div style="font-weight: bold;"><br>Relevant Courses:<br></div><ul>
     @foreach($courses as $course)

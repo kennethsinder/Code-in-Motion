@@ -26,11 +26,6 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('important', 'Display on carousel? ') !!}
-    {!! Form::checkbox('important', 'important', true) !!}
-</div>
-
-<div class="form-group">
     {!! Form::label('Associated Image:') !!}
     {!! Form::file('image') !!}
 </div>

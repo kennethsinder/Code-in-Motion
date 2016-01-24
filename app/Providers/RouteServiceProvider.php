@@ -41,6 +41,10 @@ class RouteServiceProvider extends ServiceProvider
         $router->bind('projects', function($id) {
             return \App\Project::findOrFail($id);
         });
+
+        $router->bind('pages', function($name) {
+            return \App\Page::where('location', $name)->firstOrFail();
+        });
     }
 
     /**

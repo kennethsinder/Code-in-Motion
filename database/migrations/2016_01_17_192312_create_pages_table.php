@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAboutTable extends Migration
+class CreatePagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,12 @@ class CreateAboutTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('pages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('location');
+            $table->text('text');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +27,6 @@ class CreateAboutTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('pages');
     }
 }

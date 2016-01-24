@@ -17,6 +17,7 @@ Route::get('search', ['as' => 'search', 'uses' => 'BlogsController@search']);
 Route::resource('blog', 'BlogsController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('contact', 'ContactController');
+Route::resource('pages', 'PageController');
 
 Route::get('tags/{tags}', 'TagsController@show');
 Route::post('contact_request', 'ContactController@submit');

@@ -11,9 +11,9 @@
         </div><br/><br/>
     @endif
 
-    <article><p class="">
-        {!! nl2br(e($blog->body)) !!}
-    </p></article>
+    <article><h4 style="line-height: 125%;">
+        {!! nl2br($blog->body) !!}
+    </h4></article>
 
     <br/>
     @unless ($blog->tags->isEmpty())

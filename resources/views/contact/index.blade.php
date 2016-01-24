@@ -12,11 +12,9 @@
 </h1><hr/>
 
 <p><h4 style="line-height: 150%;">
-    Fill in the form below to send me a quick message. <br/><br/>
-    I am currently pursuing a Bachelor's Degree in <strong>Honours Software
-    Engineering</strong> at the University of Waterloo in Waterloo, ON.
-    I am looking for software development positions for my co-op terms.
-    Any other business-related inquiries can be submitted here as well.
+    @unless (auth()->guest()) <a href="pages/contact/edit" class="btn btn-primary">Edit Text</a><br/><br/>
+    @endunless
+    {!! $text !!}
 </h4></p>
 
 {!! Form::open(['url' => 'contact_request', 'class' => 'form container']) !!}

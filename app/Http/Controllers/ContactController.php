@@ -17,7 +17,8 @@ class ContactController extends Controller
 
     public function index()
     {
-        return view('contact.index');
+        $text = \App\Page::where('location', 'contact')->first()->text;
+        return view('contact.index', compact('text'));
     }
 
     public function submit()
