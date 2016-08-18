@@ -21,6 +21,16 @@ class BlogsController extends Controller
 {
 
     /**
+     * List of valid image extensions for blog pictures
+     */
+    private $validExtensions = ['bmp', 'gif', 'jpg', 'png'];
+
+    /**
+     * Directory in which to look for images
+     */
+     private $imageDirectory = 'images/catalog';
+
+    /**
      * Create a new BlogsController instance.
      */
     public function __construct()
@@ -28,20 +38,22 @@ class BlogsController extends Controller
         $this->middleware('auth', ['only' => ['create', 'delete']]);
     }
 
+    /**
+     * Return the view for the blog index page
+     */
     public function index()
     {
         $blogs = Blog::latest('published_at')->published()->get();
-        $latest = Blog::latest()->first();
+        $latest = Blog::latest()->first();  // Also retrieve latest blog
         return view('blog.index', compact('blogs', 'latest'));
     }
 
     public function show(Blog $blog)
     {
         $path = null;
-        $extensions = ['bmp', 'gif', 'jpg', 'png'];
-        foreach($extensions as $ext)
+        foreach($this->validExtensions as $ext)
         {
-            $potentialPath = 'images/catalog/' . $blog->id . '.' . $ext;
+            $potentialPath = $this->imageDirectory . $blog->id . '.' . $ext;
             if (file_exists($potentialPath)) {
                 $path = $potentialPath;
                 break;

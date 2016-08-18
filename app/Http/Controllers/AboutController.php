@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Page;
 use Illuminate\Http\Request;
@@ -11,8 +13,9 @@ class AboutController extends Controller
     {
         $first = 'Kenneth';
         $last = 'Sinder';
-        $courses = ['Programming Principles', 'Methods of Software Engineering',
-                    'Data Abstraction and Implementation', 'Digital Circuits and Systems'];
+        $courses = ['Foundations of Sequential Programs',
+                    'Digital Computers', 'Data Abstraction and Implementation',
+                    'Logic and Computation']; // TODO: add to DB
         $text = Page::where('location', 'about')->first()->text;
         return view('about.index')->with(compact('first' , 'last', 'courses', 'text'));
     }

@@ -14,6 +14,7 @@ class ProjectsController extends Controller
 {
     public function __construct()
     {
+        // Ensure unauthorized users (guests) can't create or delete projects
         $this->middleware('auth', ['only' => ['create', 'delete']]);
     }
 
@@ -101,11 +102,14 @@ class ProjectsController extends Controller
         }
     }
 
+    /**
+     * Append 'http://' to the given URL string if not exists and return that.
+     */
     private function convertToAbsoluteUrl($url)
     {
         if (strpos($url, 'http') === false)
         {
-            return 'http://'.$url;
+            return "http://$url";
         }
         return $url;
     }

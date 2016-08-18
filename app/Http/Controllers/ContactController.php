@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
-    public function _construct()
-    {}
-
     public function index()
     {
         $text = \App\Page::where('location', 'contact')->first()->text;
@@ -40,12 +37,17 @@ class ContactController extends Controller
                 $message->to('kenneth@codeinmotion.net', 'Kenneth')->
                     cc('kennethsinder@outlook.com')->subject('contact form submit');
             });
-            return redirect('/')->with('flash_message', 'Your message has been sent. Thank you!');
+            $text = 'Your message has been sent. Thank you!';
+
+            // Redirect back to the homepage with the success message.
+            return redirect('/')->with('flash_message', $text);
         }
         else
         {
+            // Redirect back one page with an error message
+            $text = 'Check that you have filled out all fields and that the e-mail is valid.';
             return redirect()->back()->withInput()->
-            with(['flash_message' => 'Check that you have filled out all fields and that the e-mail is valid.',
+            with(['flash_message' => $text,
                 'flash_message_error' => true]);
         }
     }
