@@ -33,7 +33,7 @@
                 <h4 style="font-style: italic;">{{Carbon\Carbon::parse($blog->published_at)->format('l, F jS, Y')}}</h4>
             </h2>
 
-            <div class="body lead"> {{str_limit($blog->body)}}</div>
+            <div class="body lead"> {{str_limit(strip_tags($blog->body))}}</div>
         </article>
         <hr/>
     @endforeach
