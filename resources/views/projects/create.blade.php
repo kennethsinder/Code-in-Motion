@@ -11,4 +11,4 @@
      'files' => true]) !!}
     @include('projects.form', ['submitButtonText' => 'Add Project'])
     {!! Form::close() !!}
-@stop
+@endsection('content')

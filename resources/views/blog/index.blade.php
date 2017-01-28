@@ -37,4 +37,4 @@
         </article>
         <hr/>
     @endforeach
-@stop
+@endsection('content')

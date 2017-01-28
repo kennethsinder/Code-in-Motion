@@ -24,4 +24,4 @@
         <a href="/">{!! Form::button('Return Home', ['class' => 'btn btn-danger form-control']) !!}</a>
     </div>
     {!! Form::close() !!}
-@stop
+@endsection('content')

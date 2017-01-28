@@ -11,4 +11,4 @@
      'files' => true]) !!}
     @include('blog.form', ['submitButtonText' => 'Add Blog Post'])
     {!! Form::close() !!}
-@stop
+@endsection('content')

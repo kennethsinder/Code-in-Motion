@@ -35,4 +35,4 @@
         <button type="submit" class="btn btn-danger">Delete Blog Post</button>
         {!! Form::close() !!}
     @endunless
-@stop
+@endsection('content')

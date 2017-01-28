@@ -12,4 +12,4 @@
              'files' => true]) !!}
         @include('projects.form', ['submitButtonText' => 'Confirm Changes to Project'])
     {!! Form::close() !!}
-@stop
+@endsection('content')

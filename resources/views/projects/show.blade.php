@@ -28,4 +28,4 @@
         <button type="submit" class="btn btn-danger">Delete Project</button>
         {!! Form::close() !!}
     @endunless
-@stop
+@endsection('content')
