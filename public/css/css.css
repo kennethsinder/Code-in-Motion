@@ -6,14 +6,6 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-/*h1, p {
-    padding-left: 30px;
-}*/
-
-/*a:hover {
-     text-decoration: underline !important;
-}*/
-
 .navbar-brand {
     font-size: 30px !important;
     color: #ffc520 !important;
@@ -38,8 +30,21 @@ body {
     border-top: 1px solid #d3d3d3;
     height: 300px;
 }
+
 [class *= "col-"]:not(:first-child,:last-child) {
-    padding-right:7px;
-    padding-left:7px;
+    padding-right: 7px;
+    padding-left: 7px;
     background-color: #ff0043;
+}
+
+.leftJustified {
+    text-align: left;
+}
+
+.rightJustified {
+    text-align: right;
+}
+
+.homepageSubtitle {
+    font-weight: bold;
 }
