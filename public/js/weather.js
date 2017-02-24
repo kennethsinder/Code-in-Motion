@@ -1,20 +1,63 @@
 $(function() {
-    var geo = {};
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success, error);
     }
     else {
-        $("#temp").html("<strong>Your browser doesn't have HTML5 support! :(</strong> " + e.message)
+        $("#temp").html("<strong>Your browser doesn't have HTML5 support! :(</strong>")
     }
     function error(e) {
-        // TODO: Friendly error message
+        $("#temp").html("<strong>No HTTPS yet, so geolocation won't work in Chrome :(" +
+            " </strong>")
+        setUpManualEntry("Enter your city and country manually")
     }
 
     function success(position) {
+        var geo = {}
         geo.lat = position.coords.latitude;
         geo.lng = position.coords.longitude;
-        var weather = "http://api.openweathermap.org/data/2.5/weather?lat=" + geo.lat + "&lon=" + geo.lng + "&appid=050682ce75e55e9727deeeac96fca361";
-        var city, temp, cond, ctry;
+        getWeatherByLatLong(geo);       
+        setUpManualEntry();
+    }
+
+    /* Sets the div with the ID `temp` to a user-friendly message displaying the given
+    weather conditions. */
+    var printWeather = function (city, cond, temp)
+    {
+        var msg = "(Data from OpenWeatherMap API)";
+        $('#temp').html("<br><strong>Current Weather: </strong>The weather right now in " + city + " is " + cond +
+                " with a temp of " + temp.toFixed(1) + "\xB0C.<br><h5>" + msg + "</h5>");
+    }
+
+    var promptCityAndGetWeather = function() 
+    {
+        var newCity = prompt("Please enter your city and country:", '');
+        getWeatherByCity(city);
+    }
+
+    var getWeatherByCity = function(city, url) 
+    {
+        if (city == null) return;
+        url = url || "http://api.openweathermap.org/data/2.5/weather?q=" + city +
+                    "&appid=050682ce75e55e9727deeeac96fca361";
+        $.getJSON(url, function (result) {
+            var city = result.name;
+            var temp = result.main.temp - 273.15;
+            var cond = result.weather[0].description;
+            var ctry = result.sys.country;
+            printWeather(city, cond, temp);
+        });
+    }
+
+    var getWeatherByLatLong = function(geo) 
+    {
+        var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + geo.lat + 
+            "&lon=" + geo.lng + "&appid=050682ce75e55e9727deeeac96fca361";
+        getWeatherByCity('', url);
+    }
+
+    var setUpManualEntry = function(text)
+    {
+        text = text || "Not Your Location?";
         var $wrongLoc = $('#wrongloc');
         $wrongLoc.html("Not Your Location?");
         $wrongLoc.hover(function() {
@@ -23,31 +66,6 @@ $(function() {
         function() {
             $wrongLoc.css({"text-decoration": "none"})
         });
-        var f = function (result) {
-            city = result.name;
-            temp = result.main.temp - 273.15;
-            cond = result.weather[0].description;
-            ctry = result.sys.country;
-            printWeather(city, cond, temp);
-        };
-        $.getJSON(weather, f);
-
-        $wrongLoc.click(function() {
-            var newCity = prompt("Please enter your city:", city);
-            if (newCity != null)
-            {
-                weather = "http://api.openweathermap.org/data/2.5/weather?q=" + newCity + "," + ctry +
-                        "&appid=050682ce75e55e9727deeeac96fca361";
-                $.getJSON(weather, f);
-            }
-        });
-
-    }
-
-    function printWeather(city, cond, temp)
-    {
-        var msg = "(Data from OpenWeatherMap API)";
-        $('#temp').html("<br><strong>Current Weather: </strong>The weather right now in " + city + " is " + cond +
-                " with a temp of " + temp.toFixed(1) + "\xB0C.<br><h5>" + msg + "</h5>");
+        $wrongLoc.click(promptCityAndGetWeather);
     }
 });
