@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/css.css') }}" type="text/css">
     <link rel="stylesheet"
           href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js">
     </script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
