@@ -23,7 +23,7 @@ $(function() {
     weather conditions. */
     var printWeather = function (city, cond, temp)
     {
-        var msg = "(Data from OpenWeatherMap API)";
+        var msg = "(Data from Yahoo! Weather API)";
         $('#temp').html("<br><strong>Current Weather: </strong>The weather right now in " + city + " is " + cond +
                 " with a temp of " + temp.toFixed(1) + "\xB0C.<br><h5>" + msg + "</h5>");
     }
@@ -39,6 +39,8 @@ $(function() {
         if (city == null) return;
         url = url || "http://api.openweathermap.org/data/2.5/weather?q=" + city +
                     "&appid=050682ce75e55e9727deeeac96fca361";
+		url = url || "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='(" + city + ")')&format=json"
+
         $.getJSON(url, function (result) {
             var city = result.name;
             var temp = result.main.temp - 273.15;
@@ -50,9 +52,8 @@ $(function() {
 
     var getWeatherByLatLong = function(geo) 
     {
-        var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + geo.lat + 
-            "&lon=" + geo.lng + "&appid=050682ce75e55e9727deeeac96fca361";
-        getWeatherByCity('', url);
+        var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='(" + geo.lat + ","+geo.lng + ")')&format=json"
+		getWeatherByCity('', url);
     }
 
     var setUpManualEntry = function(text)
