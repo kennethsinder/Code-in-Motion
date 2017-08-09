@@ -6,13 +6,9 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.navbar-brand {
+.brand-text {
     font-size: 30px !important;
-    color: #ffc520 !important;
-}
-
-.navbar li {
-    font-weight: bold !important;
+    color: gold !important;
 }
 
 .form-group {
@@ -24,14 +20,14 @@ body {
     margin-bottom: 10px;
 }
 
-[class *= "col-sm-12"] {
+[class *="col-sm-12"] {
     /*background-color: #daf2fe;
     border: 1px solid #000000;*/
     border-top: 1px solid #d3d3d3;
     height: 300px;
 }
 
-[class *= "col-"]:not(:first-child,:last-child) {
+[class *="col-"]:not(:first-child, :last-child) {
     padding-right: 7px;
     padding-left: 7px;
     background-color: #ff0043;
@@ -47,4 +43,16 @@ body {
 
 .homepageSubtitle {
     font-weight: bold;
+}
+
+.navitems a {
+    font-size: 18px;
+}
+
+.navitems a:not(:hover) {
+    color: white !important;
+}
+
+.navitems a:hover {
+    color: gold !important;
 }

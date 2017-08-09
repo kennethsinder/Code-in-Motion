@@ -8,13 +8,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">CIM</a>
+            <a class="navbar-brand brand-text" href="/">Kenneth Sinder</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right navitems">
 
-                <li ><a href="/projects">My Projects</a></li>
-                <li ><a href="/blog">Blog</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">My Projects</a></li>
+                <li><a href="/blog">Blog</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
 
