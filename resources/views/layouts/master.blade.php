@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ URL::asset('css/css.css') }}" type="text/css">
     <link rel="stylesheet"
-          href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+          href="{{ URL::asset('css/bootstrap.min.css') }}">
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js">
     </script>
