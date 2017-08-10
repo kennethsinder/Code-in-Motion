@@ -30,13 +30,15 @@
     </tr>
 
     <tr>
-        <td><div"><img src="images/email.png"/></div></td>
+        <td><div><img src="images/email.png"/></div></td>
         <td><h4><a href="/contact">Contact Me via Email</a></h4></td>
     </tr>
 
     </table>
 
     <!-- Location and Weather script -->
+    <hr>
+    <button type='button' class='btn btn-primary weatherbtn'>What's the weather here?</button>
     <script type="text/javascript" src="{{ URL::asset('js/weather.js') }}"></script>
 
     <h4><span id="temp"></span><a href="#" id="wrongloc" title="Wrong Location?"></a></h4>
