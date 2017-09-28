@@ -11,26 +11,28 @@
 |
 */
 
+// Homepage
 Route::get('/', 'WelcomeController@index');
+
+// About page
 Route::get('about', 'AboutController@index');
+
+// Blog
 Route::get('search', ['as' => 'search', 'uses' => 'BlogsController@search']);
 Route::resource('blog', 'BlogsController');
-Route::resource('projects', 'ProjectsController');
-Route::resource('contact', 'ContactController');
-Route::resource('pages', 'PageController');
-
 Route::get('tags/{tags}', 'TagsController@show');
+
+// Personal Projects
+Route::resource('projects', 'ProjectsController');
+
+// Contact page
+Route::resource('contact', 'ContactController');
 Route::post('contact_request', 'ContactController@submit');
+
+// Page editing
+Route::resource('pages', 'PageController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
-/*
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
-*/
